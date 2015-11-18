@@ -1,0 +1,133 @@
+if(verificaciones.getInt("codigoValidacion")==1){
+	try{
+		InitialContext initialContext = new InitialContext();
+		//BusinessFlowManagerHome processHome = (BusinessFlowManagerHome)initialContext.lookup ("com/ibm/task/api/HumanTaskManagerHome");
+		//BusinessFlowManager businessFlowManagerService = processHome.create();
+		
+		
+		BusinessFlowManagerHome processHome = (BusinessFlowManagerHome)initialContext.lookup ("com/ibm/bpe/api/BusinessFlowManagerHome");
+		//com/ibm/bpe/api/BusinessFlowManagerHome 
+		HumanTaskManagerHome processHome = (HumanTaskManagerHome)initialContext.lookup ("com/ibm/task/api/HumanTaskManagerHome");
+		HumanTaskManager humanTaskManager = processHome.create();  
+		
+		String nombreActividad = "VerificacionTR";
+		if(activityInstance(nombreActividad)!=null){
+			Task task = humanTaskManager.getTask(activityInstance(nombreActividad).getAdminTaskID());
+			if(task.getState() == Task.STATE_READY){
+				TKIID tkiid = task.getID();
+				ClientObjectWrapper verificacion = humanTaskManager.claim(tkiid);
+				humanTaskManager.complete(tkiid,verificacion);
+			}else if(task.getState() == Task.STATE_CLAIMED){
+				TKIID tkiid = task.getID();
+				humanTaskManager.cancelClaim(tkiid);
+				ClientObjectWrapper verificacion = humanTaskManager.claim(activityInstance(nombreActividad).getAdminTaskID());
+				humanTaskManager.complete(tkiid,verificacion);
+			}
+			/*
+			System.out.println("-> "+businessFlowManagerService.getActivityInstance(activityInstance("VerificacionTR").getID()).getOwner());
+			businessFlowManagerService.claim(activityInstance("VerificacionTR").getID());
+			businessFlowManagerService.complete(activityInstance("VerificacionTR").getID());
+			*/
+		}
+		
+		nombreActividad = "VerificacionTL";
+		if(activityInstance(nombreActividad)!=null){
+			Task task = humanTaskManager.getTask(activityInstance(nombreActividad).getAdminTaskID());
+			if(task.getState() == Task.STATE_READY){
+				TKIID tkiid = task.getID();
+				ClientObjectWrapper verificacion = humanTaskManager.claim(tkiid);
+				humanTaskManager.complete(tkiid,verificacion);
+			}else if(task.getState() == Task.STATE_CLAIMED){
+				TKIID tkiid = task.getID();
+				humanTaskManager.cancelClaim(tkiid);
+				ClientObjectWrapper verificacion = humanTaskManager.claim(activityInstance(nombreActividad).getAdminTaskID());
+				humanTaskManager.complete(tkiid,verificacion);
+			}
+			/*
+			System.out.println("-> "+businessFlowManagerService.getActivityInstance(activityInstance("VerificacionTL").getID()).getOwner());
+			businessFlowManagerService.claim(activityInstance("VerificacionTL").getID());
+			businessFlowManagerService.complete(activityInstance("VerificacionTL").getID());
+			*/
+		}
+		
+		nombreActividad = "VerificacionFD";
+		if(activityInstance(nombreActividad)!=null){
+			Task task = humanTaskManager.getTask(activityInstance(nombreActividad).getAdminTaskID());
+			if(task.getState() == Task.STATE_READY){
+				TKIID tkiid = task.getID();
+				ClientObjectWrapper verificacion = humanTaskManager.claim(tkiid);
+				humanTaskManager.complete(tkiid,verificacion);
+			}else if(task.getState() == Task.STATE_CLAIMED){
+				TKIID tkiid = task.getID();
+				humanTaskManager.cancelClaim(tkiid);
+				ClientObjectWrapper verificacion = humanTaskManager.claim(activityInstance(nombreActividad).getAdminTaskID());
+				humanTaskManager.complete(tkiid,verificacion);
+			}
+			/*
+			System.out.println("-> "+businessFlowManagerService.getActivityInstance(activityInstance("VerificacionFD").getID()).getOwner());
+			businessFlowManagerService.claim(activityInstance("VerificacionFD").getID());
+			businessFlowManagerService.complete(activityInstance("VerificacionFD").getID());
+			*/
+		}
+		
+		nombreActividad = "VerificacionFL";
+		if(activityInstance(nombreActividad)!=null){
+			Task task = humanTaskManager.getTask(activityInstance(nombreActividad).getAdminTaskID());
+			if(task.getState() == Task.STATE_READY){
+				TKIID tkiid = task.getID();
+				ClientObjectWrapper verificacion = humanTaskManager.claim(tkiid);
+				humanTaskManager.complete(tkiid,verificacion);
+			}else if(task.getState() == Task.STATE_CLAIMED){
+				TKIID tkiid = task.getID();
+				humanTaskManager.cancelClaim(tkiid);
+				ClientObjectWrapper verificacion = humanTaskManager.claim(activityInstance(nombreActividad).getAdminTaskID());
+				humanTaskManager.complete(tkiid,verificacion);
+			}
+			/*
+			System.out.println("-> "+businessFlowManagerService.getActivityInstance(activityInstance("VerificacionFL").getID()).getOwner());
+			businessFlowManagerService.claim(activityInstance("VerificacionFL").getID());
+			businessFlowManagerService.complete(activityInstance("VerificacionFL").getID());
+			*/
+		}
+		
+		nombreActividad = "VerificacionTD";
+		if(activityInstance(nombreActividad)!=null){
+			Task task = humanTaskManager.getTask(activityInstance(nombreActividad).getAdminTaskID());
+			if(task.getState() == Task.STATE_READY){
+				TKIID tkiid = task.getID();
+				ClientObjectWrapper verificacion = humanTaskManager.claim(tkiid);
+				humanTaskManager.complete(tkiid,verificacion);
+			}else if(task.getState() == Task.STATE_CLAIMED){
+				TKIID tkiid = task.getID();
+				humanTaskManager.cancelClaim(tkiid);
+				ClientObjectWrapper verificacion = humanTaskManager.claim(activityInstance(nombreActividad).getAdminTaskID());
+				humanTaskManager.complete(tkiid,verificacion);
+			}
+			/*		
+			System.out.println("-> "+businessFlowManagerService.getActivityInstance(activityInstance("VerificacionTD").getID()).getOwner());
+			businessFlowManagerService.claim(activityInstance("VerificacionTD").getID());
+			businessFlowManagerService.complete(activityInstance("VerificacionTD").getID());
+			*/
+		}
+		//businessFlowManagerService.
+		//activityInstance().getAdminTaskID()
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+}
+
+		String nombreActividad = "VerificacionTR";
+		if(activityInstance(nombreActividad)!=null){
+			Task task = humanTaskManager.getTask(activityInstance("VerificacionTR").getAdminTaskID());
+			if(task.getState() == Task.STATE_READY){
+				//TKIID tkiid = task.getID();
+				businessFlowManagerService.claim(activityInstance("VerificacionTR").getID());
+				ClientObjectWrapper intVtr = businessFlowManagerService.getOutputMessage(activityInstance("VerificacionTR").getID());
+				businessFlowManagerService.complete(activityInstance("VerificacionTR").getID(),intVtr);
+			}else if(task.getState() == Task.STATE_CLAIMED){
+				TKIID tkiid = task.getID();
+				humanTaskManager.cancelClaim(tkiid);
+				//ClientObjectWrapper verificacion = humanTaskManager.claim(activityInstance(nombreActividad).getAdminTaskID());
+				//humanTaskManager.complete(tkiid,verificacion);
+			}
+		}
